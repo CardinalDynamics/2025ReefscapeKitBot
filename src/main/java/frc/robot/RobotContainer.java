@@ -9,6 +9,7 @@ import frc.robot.Constants.OperatorConstants;
 //import frc.robot.commands.ExampleCommand;
 //import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Spit;
@@ -25,7 +26,7 @@ public class RobotContainer {
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   public final Drivetrain driveTrain = new Drivetrain();
   public final Roller roller = new Roller();
-  public final Spit spit = new Spit();
+  //public final Spit spit = new Spit();
   // Replace with CommandPS4Controller or CommandJoystick if needed
   public final CommandXboxController driverController =
       new CommandXboxController(0);
@@ -58,9 +59,10 @@ public class RobotContainer {
     driveTrain.setDefaultCommand(new RunCommand(() -> driveTrain.arcadeDrive(
       driverController.getLeftY(), driverController.getRightX()
     ), driveTrain));
-
-    Trigger rightTrig = new Trigger(() -> xboxController.getRightTriggerAxis() > 0.5);
-    rightTrig.whileActiveContinuous(new Spit(Roller));
+    roller.setDefaultCommand(new RunCommand(() -> roller.stopRoller(), roller));
+    // Trigger rightTrig = new Trigger(() -> xboxController.getRightTriggerAxis() > 0.5);
+    // rightTrig.whileActiveContinuous(new Spit(roller));
+    driverController.rightTrigger().whileTrue(new Spit(roller));
 
   }
 
@@ -69,8 +71,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  //public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     // return Autos.exampleAuto(m_exampleSubsystem);
-  }
+  //}
 }

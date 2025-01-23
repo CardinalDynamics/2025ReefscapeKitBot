@@ -38,4 +38,7 @@ public class Drivetrain extends SubsystemBase{
         //put the front motors into the DifferentialDrive object to control all 4 drivemotors
         driveTrain = new DifferentialDrive(leftFront, rightFront);
     }
+    public void arcadeDrive(double speed, double rotation) {
+        driveTrain.arcadeDrive(speed, rotation);
+      }
 }

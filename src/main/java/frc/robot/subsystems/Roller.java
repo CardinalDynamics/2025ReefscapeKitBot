@@ -1,7 +1,10 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-public class Roller {
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+public class Roller extends SubsystemBase {
     TalonSRX m_roller;
     public Roller(){
         // constructing motor controller object, 
@@ -12,10 +15,10 @@ public class Roller {
 
     }
     public void runRoller(){
-        m_roller.set(1.0);
+        m_roller.set(TalonSRXControlMode.PercentOutput,1.0);
 
     }
     public void stopRoller(){
-        m_roller.set(0);
+        m_roller.set(TalonSRXControlMode.PercentOutput,0);
     }
 }
