@@ -62,7 +62,7 @@ public class RobotContainer {
     roller.setDefaultCommand(new RunCommand(() -> roller.stopRoller(), roller));
     // Trigger rightTrig = new Trigger(() -> xboxController.getRightTriggerAxis() > 0.5);
     // rightTrig.whileActiveContinuous(new Spit(roller));
-    driverController.rightTrigger().whileTrue(new Spit(roller));
+    operatorController.rightTrigger().whileTrue(new Spit(roller));
 
   }
 
